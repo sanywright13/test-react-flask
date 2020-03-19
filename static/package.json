@@ -2,10 +2,11 @@
   "name": "test-react-flask",
   "version": "1.0.0",
   "description": "Fullstack Template",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
     "build": "webpack -p --progress --config webpack.config.js",
     "dev-build": "webpack --progress -d --config webpack.config.js",
+    "execute": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --progress -d --config webpack.config.js --watch"
   },
@@ -19,7 +20,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/angineering/FullStackTemplate.git"
+    "url": ""
   },
   "author": "Sanaa lakrouni",
   "license": "",

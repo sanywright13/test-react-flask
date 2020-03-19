@@ -12,15 +12,20 @@ export default class App extends React.Component {
     }
 
     getPythonHello() {
-        $.get(window.location.href + 'hello', (data) => {
+   $.get(window.location.href + 'hello', (data) => {
             console.log(data);
-            this.personaliseGreeting(data);
+
         });
+
     }
     render () {
         return (
             <PageHeader>
-                <button onClick={this.getPythonHello}></button>button>
+          <div>     <button onClick={this.getPythonHello}>
+                    Clicker
+
+                </button>
+              </div>
             </PageHeader>
         );
     }
