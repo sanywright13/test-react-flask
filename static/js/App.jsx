@@ -10,13 +10,18 @@ export default class App extends React.Component {
         super(props);
         this.state= {
           genres:[],
-            name:'',
+            nom:'',
             resume:''
         }
         this.getPythonHello=this.getPythonHello.bind(this);
+this.addFavorite=this.addFavorite.bind(this);
+this.listFave=this.addFavorite.bind(this);
+
+
     }
 componentDidMount() {
-fetch('https://api.themoviedb.org/3/movie/419704?api_key=00dd795327e61a36353c4ebdcb82df44&language=en-US')
+     let movie_id= Math.floor(Math.random() * 100);
+fetch('https://api.themoviedb.org/3/movie/'+movie_id+'?api_key=00dd795327e61a36353c4ebdcb82df44&language=en-US')
   .then(response => response.json())
   .then(data => {
         let  genres_updated = data.genres.map((genres)=>{
@@ -28,12 +33,18 @@ fetch('https://api.themoviedb.org/3/movie/419704?api_key=00dd795327e61a36353c4eb
   this.setState(
   {
 genres: genres_updated,
-      name:data.name,
+      nom:data.name,
       resume:data.overview
 
 })
 }
   );
+}
+addFavorite(){
+        //sent a request to python endpoint to add this movie to mongodb
+}
+listFave(){
+        //show the list of the movies added in database
 }
     getPythonHello() {
    $.get(window.location.href + 'hello', (data) => {
@@ -45,15 +56,20 @@ genres: genres_updated,
     render () {
         return (
 
-          <div>
+          <div className="container">
 
-
+<div className="genres">
 genres : {this.state.genres}
-
-     name:          {this.state.name}
+</div>
+              <div className="name">
+     name:          {this.state.nom}
+     </div><div className="resume">
 resume :              {this.state.resume}
+</div>
 
-<button onClick={this.getPythonHello}>click</button>
+<button>Voir Autre</button>
+              <button onClick={this.addFavorite}>Ajouter Au favoris</button>
+   <button onClick={this.listFave}>Ma Liste des Favoris</button>
               </div>
 
         );
