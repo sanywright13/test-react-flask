@@ -1,4 +1,3 @@
-
 from pymongo import MongoClient
 from mongo import MongodbMovie
 from shema import MovieShema
@@ -26,11 +25,12 @@ def addMovie():
     # i want this record to be an object
     # i want to get the movie object from react and insert it here
     # serialize the api object so we can add it to a data base
-    json_data = request.get_json()
-    print(json_data)
+    shemaMovie = MovieShema()
+    jsondata=request.get_json()
+    data = shemaMovie.load(jsondata['item'])
+    print(data)
 
-    # record = {'id': '125', 'date': '2020', 'name': 'game of thrones', 'rate': '5.7', 'resume': 'ggg'}
-    # mongo.addmovie(record)
+    mongo.addmovie(data)
 
     # we want to return thr data base object
     return {'result': 'done'}
