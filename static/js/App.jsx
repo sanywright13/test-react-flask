@@ -40,10 +40,24 @@ console.log(movies_updated)
 addFavorite(item){
         //sent a request to python endpoint to add this movie to mongodb
     //call the addMovie endpoint
+  console.log(item)
 
-    console.log(item)
       this.apiClient = new APIClient();
-    this.apiClient.createKudo(item);
+
+    //send the element that i want
+    let item_app=item
+    let item_appdated={}
+   for (let property in item_app) {
+       if(property!= "release_date") {
+item_appdated[property]=item_app[property]
+
+       }
+
+   }
+  console.log(item_appdated)
+
+
+    this.apiClient.createKudo(item_appdated);
 
 }
 

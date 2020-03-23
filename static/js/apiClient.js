@@ -4,7 +4,7 @@ import axios from 'axios';
 
 class APIClient {
 
-  createKudo(repo) {
+    createKudo(repo) {
 let config = { headers: {
                       'Content-Type': 'application/json',
                       'Access-Control-Allow-Origin': '*'}
