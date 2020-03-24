@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const config = {
     entry:  __dirname + '/js/index.jsx',
     output: {
@@ -18,12 +18,10 @@ const config = {
                 use: 'babel-loader'
             },
             {
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: 'css-loader',
-                })
-            },
+  test: /\.css$/,
+  use: [MiniCssExtractPlugin.loader, "css-loader"]
+},
+
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: 'file-loader'
@@ -32,6 +30,9 @@ const config = {
     },
     plugins: [
         new ExtractTextPlugin('styles.css'),
+        new MiniCssExtractPlugin({
+  filename: "css/fullstack.css"
+})
     ]
 };
 

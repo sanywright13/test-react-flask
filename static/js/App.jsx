@@ -1,10 +1,23 @@
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 import { PageHeader } from "react-bootstrap";
-
+import Button from '@material-ui/core/Button';
 import APIClient from "./apiClient";
+import { makeStyles } from '@material-ui/core/styles';
+import MovieCard from './movies'
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import InfoIcon from '@material-ui/icons/Info';
 require('../css/fullstack.css');
-var $ = require('jquery');
-
+let $ = require('jquery');
 
 export default class App extends React.Component {
     constructor() {
@@ -14,9 +27,6 @@ export default class App extends React.Component {
         }
         this.getPythonHello=this.getPythonHello.bind(this);
 this.addFavorite=this.addFavorite.bind(this);
-
-
-
     }
 componentDidMount() {
      //let movie_id= Math.floor(Math.random() * 100);
@@ -30,9 +40,6 @@ console.log(movies_updated)
           this.setState({
               movies:movies_updated
           })
-
-
-
       }
       )
     console.log(this.state.movies)
@@ -69,43 +76,26 @@ item_appdated[property]=item_app[property]
 
     }
     render () {
+
+
         return (
 
           <div className="container mt-5">
-
+ <div >
+      <GridList  >
 
     {this.state.movies.map(item=>{
-let src_img = "https://image.tmdb.org/t/p/w300_and_h450_bestv2/"+item.backdrop_path
+
    return (
-    <div key={item.id} className="row">
-        <div className="col-8 media">
 
- <img src={src_img} className="mr-3" alt="..."/>
-     <div className="media-body">
-    <div>  id:  {item.id}</div>
-   <div> Nom :    { item.title}</div>
-     <div>   date de sortie    :{ item.release_date}</div>
-         <div>Rating : {item.vote_average}</div>
-         <div>Genres :{item.genre_ids.map(id=>{
+     <MovieCard movie={item}/>
 
-        return     <span key={id}>{id}</span>
-
-         })} </div>
-
-   <div>Resume :     {item.overview}</div>
-      <button type="button" className="btn btn-info" value={item.title}
-              onClick={ (e) =>
-                  this.addFavorite(item)}>favoriter</button>
-
-    </div>
- </div>
-        </div>
 )
-})}
-
+}
+)}
+  </GridList>
+    </div>
 </div>
-
-
         );
     }
 }
