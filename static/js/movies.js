@@ -18,6 +18,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import InfoIcon from '@material-ui/icons/Info';
+import APIClient from "./apiClient";
 const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: 345,
@@ -38,6 +39,29 @@ const useStyles = makeStyles(theme => ({
   },
 
 }));
+function addFavorite(item){
+        //sent a request to python endpoint to add this movie to mongodb
+    //call the addMovie endpoint
+  console.log(item)
+
+      let apiClient = new APIClient();
+
+    //send the element that i want
+    let item_app=item
+    let item_appdated={}
+   for (let property in item_app) {
+       if(property!= "release_date") {
+item_appdated[property]=item_app[property]
+
+       }
+
+   }
+  console.log(item_appdated)
+
+
+    apiClient.createKudo(item_appdated);
+
+}
 function MovieCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -71,7 +95,7 @@ let src_img = "https://image.tmdb.org/t/p/w300_and_h450_bestv2/"+props.movie.bac
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          <FavoriteIcon onClick={(e)=> addFavorite(props.movie)}/>
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />

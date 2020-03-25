@@ -24,3 +24,6 @@
 .header-contents button:focus {
     outline: None;
 }
+.MuiSvgIcon-root:hover {
+    color: red;
+}

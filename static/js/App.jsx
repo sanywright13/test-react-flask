@@ -6,16 +6,9 @@ import {
   Link
 } from "react-router-dom";
 
-import { PageHeader } from "react-bootstrap";
-import Button from '@material-ui/core/Button';
-import APIClient from "./apiClient";
-import { makeStyles } from '@material-ui/core/styles';
-import MovieCard from './movies'
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import InfoIcon from '@material-ui/icons/Info';
+
+import TabPanel from './tabs.js'
+import Grid from '@material-ui/core/Grid';
 require('../css/fullstack.css');
 let $ = require('jquery');
 
@@ -26,7 +19,6 @@ export default class App extends React.Component {
          movies:[]
         }
         this.getPythonHello=this.getPythonHello.bind(this);
-this.addFavorite=this.addFavorite.bind(this);
     }
 componentDidMount() {
      //let movie_id= Math.floor(Math.random() * 100);
@@ -44,6 +36,7 @@ console.log(movies_updated)
       )
     console.log(this.state.movies)
 }
+/*
 addFavorite(item){
         //sent a request to python endpoint to add this movie to mongodb
     //call the addMovie endpoint
@@ -67,7 +60,7 @@ item_appdated[property]=item_app[property]
     this.apiClient.createKudo(item_appdated);
 
 }
-
+*/
     getPythonHello() {
    $.get(window.location.href + 'hello', (data) => {
             console.log(data);
@@ -82,18 +75,8 @@ item_appdated[property]=item_app[property]
 
           <div className="container mt-5">
  <div >
-      <GridList  >
+     <TabPanel  movies={this.state.movies} />
 
-    {this.state.movies.map(item=>{
-
-   return (
-
-     <MovieCard movie={item}/>
-
-)
-}
-)}
-  </GridList>
     </div>
 </div>
         );

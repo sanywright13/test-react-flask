@@ -34,11 +34,11 @@ def addMovie():
     movie_objet = shemaMovie.dump(jsondata['item'])
     mongo.addmovie(movie_objet)
     # convert to an object movie
-    movie_objet = shemaMovie.load(jsondata['item'])
-    print(movie_objet.title)
+    #movie_objet = shemaMovie.load(jsondata['item'])
+    # print(movie_objet.title)
     ## convert to a string json
-    json_result = shemaMovie.dumps(movie_objet)
-    print(json_result)
+    #json_result = shemaMovie.dumps(movie_objet)
+    # print(json_result)
     # we want to return thr data base object
     return 'hi'
 
