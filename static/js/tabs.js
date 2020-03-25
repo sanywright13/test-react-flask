@@ -4,19 +4,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import PhoneIcon from '@material-ui/icons/Phone';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
-import HelpIcon from '@material-ui/icons/Help';
-import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
-import ThumbDown from '@material-ui/icons/ThumbDown';
-import ThumbUp from '@material-ui/icons/ThumbUp';
+import PhoneIcon from '@material-ui/icons/Phone';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Grid from "@material-ui/core/Grid";
-import MovieCard from "./movies";
+import FavoriteFilms from './favoritefilms.js'
 import OneMovie from './onemovie'
-import IconButton from "@material-ui/core/IconButton";
+
 function TabPanel(props) {
   const { children, value, index} = props;
 
@@ -73,19 +67,19 @@ export default function ScrollableTabsButtonPrevent(props) {
           scrollButtons="off"
           aria-label="scrollable prevent tabs example"
         >
-
+          <Tab label="Liste" {...a11yProps(0)} />
           <Tab icon={<FavoriteIcon />} aria-label="favorite" {...a11yProps(1)} />
-          <Tab icon={<PersonPinIcon />} aria-label="person" {...a11yProps(2)} />
 
         </Tabs>
       </AppBar>
 
-      <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={0}>
 <OneMovie movies={props.movies}/>
 
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={1}>
 
+<FavoriteFilms />
       </TabPanel>
     </div>
   );

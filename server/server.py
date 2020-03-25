@@ -47,8 +47,8 @@ def addMovie():
 def get_all_movies():
     # get the list of the movies added in the data base
 
-    all_movies=[shemaMovie.dump(movie) for movie in mongo.all_movies()]
-    return jsonify(all_movies)
+    data=[shemaMovie.dump(movie) for movie in mongo.all_movies()]
+    return jsonify(data)
 
 
 
