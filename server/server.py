@@ -16,6 +16,8 @@ mongo = MongoClient('localhost', 27017)
 db = mongo['dbmovies']
 mongo = MongodbMovie()
 shemaMovie = MovieShema()
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -23,7 +25,6 @@ def index():
 
 @app.route('/addMovie', methods=["POST"])
 def addMovie():
-
     # i want this record to be an object
     # i want to get the movie object from react and insert it here
     # serialize the api object so we can add it to a data base
@@ -34,10 +35,10 @@ def addMovie():
     movie_objet = shemaMovie.dump(jsondata['item'])
     mongo.addmovie(movie_objet)
     # convert to an object movie
-    #movie_objet = shemaMovie.load(jsondata['item'])
+    # movie_objet = shemaMovie.load(jsondata['item'])
     # print(movie_objet.title)
     ## convert to a string json
-    #json_result = shemaMovie.dumps(movie_objet)
+    # json_result = shemaMovie.dumps(movie_objet)
     # print(json_result)
     # we want to return thr data base object
     return 'hi'
@@ -47,15 +48,8 @@ def addMovie():
 def get_all_movies():
     # get the list of the movies added in the data base
 
-    data=[shemaMovie.dump(movie) for movie in mongo.all_movies()]
+    data = [shemaMovie.dump(movie) for movie in mongo.all_movies()]
     return jsonify(data)
-
-
-
-
-
-
-
 
 
 if __name__ == '__main__':
