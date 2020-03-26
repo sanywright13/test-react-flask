@@ -3,3 +3,7 @@
 .MuiSvgIcon-root:hover {
     color: red;
 }
+.MuiGrid-root .MuiGrid-item .MuiButtonBase-root img{
+    width:200px;
+    height: 170px;
+}

@@ -8,13 +8,34 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Avatar from '@material-ui/core/Avatar';
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+    maxWidth: 500,
+  },
+  images: {
+    width: 50  ,
+    height: 50,
+  },
+
+}));
+
 class  FavoriteFilms extends Component {
 
         constructor(props) {
+
                 super(props);
                 this.state={
+                    delete:false
                         faveMovies:[]
                 }
+            this.classes= useStyles;
+                this.deleteMovie=this.deleteMovie.bind(this)
+
         }
 
 componentDidMount(){
@@ -31,17 +52,24 @@ apiClient.getAllMovies().then(data=> {
 
 )
 }
+deleteMovie(item){
+         let   apiClient=new APIClient()
+    apiClient.delete(item);
+
+}
      render() {
 
             return (
-   <div >
+   <div className={this.classes.root}><h3>Vos Films Favoris</h3>
            {this.state.faveMovies.map(row=>{
+               const img="https://image.tmdb.org/t/p/w300_and_h450_bestv2/"+row.backdrop_path
                           return (
-      <Paper >
+
+      <Paper className={this.classes.paper}>
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase >
-              <img  alt="complex" src="/static/images/grid/complex.jpg" />
+              <img className={this.classes.images} alt="complex" src={img} />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
@@ -51,21 +79,19 @@ apiClient.getAllMovies().then(data=> {
                     {row.title}
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  Full resolution 1920x1080 • JPEG
+                  langue :{row.original_language}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  ID: 1030114
+                  Type : {row.media_type}
                 </Typography>
               </Grid>
               <Grid item>
-                <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                  Remove
+                <Typography variant="body2" style={{ cursor: 'pointer' }} onClick={(e)=> this.deleteMovie(row)}>
+                  Supprimer
                 </Typography>
               </Grid>
             </Grid>
-            <Grid item>
-              <Typography variant="subtitle1">$19.00</Typography>
-            </Grid>
+
           </Grid>
         </Grid>
       </Paper>

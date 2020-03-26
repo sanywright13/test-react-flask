@@ -2,13 +2,14 @@ import os
 from pymongo import MongoClient
 from mongoengine import *
 from datetime import datetime
+
 connect('dbmovies')
 
 
 class ClassmoviesApi(Document):
-    meta = {'collection': 'moviesApi1'}
+    meta = {'collection': 'moviesApifave'}
     id = IntField()
-    video =  BooleanField()
+    video = BooleanField()
     vote_count = IntField()
     vote_average = IntField()
     title = StringField()
@@ -34,9 +35,12 @@ class MongodbMovie(object):
         self.db = self.mongo['dbmovies']
 
     def addmovie(self, dictu):
-
-        return self.db.moviesApi1.insert_one(dictu)
+        return self.db.moviesApifave.insert_one(dictu)
 
     def all_movies(self):
         self.collection = ClassmoviesApi._get_collection()
         return self.collection.find()
+
+    def deleteMovie(self, movie):
+        self.db.moviesApifave.delete_many({'title': movie['title']})
+        return ''

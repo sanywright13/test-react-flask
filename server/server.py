@@ -52,5 +52,17 @@ def get_all_movies():
     return jsonify(data)
 
 
+@app.route('/remove', methods=['DELETE'])
+def remove_movie():
+    # remove a movie by movie name and api id
+    json_data = request.get_json()
+    print(json_data['source'])
+    movie=json_data['source']
+    print(movie)
+    mongo.deleteMovie(movie)
+
+    return '', 204
+
+
 if __name__ == '__main__':
     app.run(debug=True)
