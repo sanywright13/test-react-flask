@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Avatar from '@material-ui/core/Avatar';
+import  OneFaveMovie from './OneFave'
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -30,11 +31,12 @@ class  FavoriteFilms extends Component {
 
                 super(props);
                 this.state={
-                    delete:false
+                    isDeleted:false,
+
                         faveMovies:[]
                 }
             this.classes= useStyles;
-                this.deleteMovie=this.deleteMovie.bind(this)
+
 
         }
 
@@ -52,49 +54,15 @@ apiClient.getAllMovies().then(data=> {
 
 )
 }
-deleteMovie(item){
-         let   apiClient=new APIClient()
-    apiClient.delete(item);
-
-}
      render() {
 
             return (
    <div className={this.classes.root}><h3>Vos Films Favoris</h3>
            {this.state.faveMovies.map(row=>{
-               const img="https://image.tmdb.org/t/p/w300_and_h450_bestv2/"+row.backdrop_path
+
                           return (
 
-      <Paper className={this.classes.paper}>
-        <Grid container spacing={2}>
-          <Grid item>
-            <ButtonBase >
-              <img className={this.classes.images} alt="complex" src={img} />
-            </ButtonBase>
-          </Grid>
-          <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                <Typography gutterBottom variant="subtitle1">
-                    {row.title}
-                </Typography>
-                <Typography variant="body2" gutterBottom>
-                  langue :{row.original_language}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  Type : {row.media_type}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="body2" style={{ cursor: 'pointer' }} onClick={(e)=> this.deleteMovie(row)}>
-                  Supprimer
-                </Typography>
-              </Grid>
-            </Grid>
-
-          </Grid>
-        </Grid>
-      </Paper>
+      <OneFaveMovie row={row}/>
                               )})}
     </div>
   );
