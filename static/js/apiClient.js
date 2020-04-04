@@ -31,7 +31,7 @@ class APIClient {
 
     }
 
-    getAllMovies(method = 'get', resource = '/getmovies',data) {
+    getAllMovies(method = 'get', resource = '/getmovies', data) {
 
         return client({
             method,
@@ -42,15 +42,19 @@ class APIClient {
             return resp.data ? resp.data : [];
         })
     }
-delete(item){
-     axios.delete("http://127.0.0.1:5000/remove", {
-  data: {
-    source: item
-  }
-});
 
+    delete(item) {
+        axios.delete("http://127.0.0.1:5000/remove", {
+            data: {
+                source: item
+            }
+        });
+
+    }
 }
-}
+
+
+
 
 
 

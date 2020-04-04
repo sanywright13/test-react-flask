@@ -7,3 +7,7 @@
     width:200px;
     height: 170px;
 }
+h6 a {padding: 26px;
+color: #fff;}
+h6 a:hover {padding: 26px;
+color: #cbd4dd;}
