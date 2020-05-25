@@ -59,16 +59,18 @@ Login(userUpdated).then(res=>{
   console.log(res)
     if(res.email){
         this.setState({auth:true})
+        this.props.handleLogin()
     }
     else{
            this.setState({auth:false})
+
     }
 
 })
 
 }
      render() {
-        if(this.state.auth){return(<Redirect to="/home" />)}
+        if(this.state.auth){return(<Redirect to="/" />)}
         else{
          return (
              <Container component="main" maxWidth="xs">

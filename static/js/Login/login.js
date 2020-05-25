@@ -194,7 +194,7 @@ if(this.state.authenticated==false) {
         </Container>
     )
 }else{
-    return (<div><Redirect to="/acceuil"/></div>)
+    return (<div><Redirect to="/"/></div>)
 }
 
   }

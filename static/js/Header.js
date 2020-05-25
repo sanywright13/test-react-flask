@@ -13,6 +13,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import Button from '@material-ui/core/Button';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import {BrowserRouter as Router , Switch,
   Route,
@@ -116,6 +117,10 @@ export default function Header() {
                     <Typography className={classes.title} variant="h6" noWrap>
 
                       <Link to="signin">Sign In</Link>
+                    </Typography>
+           <Typography className={classes.title} variant="h6" noWrap>
+
+
                     </Typography>
         </Toolbar>
       </AppBar>

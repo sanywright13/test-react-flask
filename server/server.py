@@ -148,10 +148,11 @@ def load_user(user_id):
         return None
 
 
-@app.route('/logout')
+@app.route('/logout', methods=["GET"])
 @login_required
 def logout():
     logout_user()
+    return jsonify({'msg': 'user log out'})
 
 
 if __name__ == '__main__':

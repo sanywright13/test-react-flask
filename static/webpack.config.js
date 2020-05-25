@@ -32,7 +32,7 @@ const config = {
         new ExtractTextPlugin('styles.css'),
         new MiniCssExtractPlugin({
   filename: "css/fullstack.css"
-})
+}),
     ]
 };
 
