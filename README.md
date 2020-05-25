@@ -1,1 +1,1 @@
-its a react flask exemple app
+This a flask Python React WEb Application handle user authentication
