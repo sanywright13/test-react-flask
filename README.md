@@ -1,7 +1,1 @@
-This a flask Python React WEb Application handle user authentication
-
-the main role of this application is to work with an Movies API TMDB and an user can favorite and delete a movie from the list of movies that he have in home 
-
-
- 
- 
+This is a Flask-based web application with a React front-end that manages user authentication and interaction with the TMDB Movies API. Users can browse movies, add them to their favorites, and remove them from their personalized movie list.
